@@ -1,0 +1,5 @@
+- [x] Check emails (status: 2026-08-29)
+- [x] Check calendar (status: 2026-08-29)
+- [ ] Investigate Voicebox offline status (127.0.0.1:17493 connection refused - still down)
+- [ ] Daily memory sweep/consolidation
+- [x] Heartbeat check (2026-08-29 07:50)

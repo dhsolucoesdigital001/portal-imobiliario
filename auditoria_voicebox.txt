@@ -1,0 +1,3 @@
+Verificação: Voicebox API - STATUS 200 OK
+Verificação: Voicebox Log Service - STATUS 200 OK
+Verificação: Voicebox Audio Processor - STATUS 200 OK

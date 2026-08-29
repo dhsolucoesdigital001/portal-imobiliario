@@ -1,0 +1,1 @@
+2026-08-27 09:40:00 Voicebox check result: {"status":"healthy","model_loaded":false,"model_downloaded":null,"model_size":null,"gpu_available":false,"gpu_type":null,"vram_used_mb":null,"backend_type":"pytorch","backend_variant":"cpu","supports_rocm":false,"gpu_compatibility_warning":null}
