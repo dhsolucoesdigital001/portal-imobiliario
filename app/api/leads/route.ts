@@ -4,9 +4,11 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     
-    // Simula disparo de webhook para n8n
+    // Persiste no banco de dados (pseudocódigo original mantido)
+    // await db.insertLead(body);
+
+    // Disparo de webhook real para n8n
     const n8nWebhookUrl = process.env.N8N_LEAD_WEBHOOK_URL;
-    
     if (n8nWebhookUrl) {
       await fetch(n8nWebhookUrl, {
         method: 'POST',
