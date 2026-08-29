@@ -1,3 +1,4 @@
+"use client";
 
 export default function DocsPage() {
   return (
@@ -27,3 +28,4 @@ export default function DocsPage() {
     </div>
   );
 }
+

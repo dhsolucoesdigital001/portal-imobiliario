@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 
 const BaseCard = ({ title, children }) => (
@@ -10,3 +11,4 @@ const BaseCard = ({ title, children }) => (
 );
 
 export default BaseCard;
+

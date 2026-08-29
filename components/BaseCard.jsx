@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { BedDouble, Bath, Car } from 'lucide-react'; // Sugestão de ícones
 
@@ -26,3 +27,4 @@ const BaseCard = ({ property }) => {
 };
 
 export default BaseCard;
+
