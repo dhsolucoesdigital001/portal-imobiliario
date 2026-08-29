@@ -1,0 +1,71 @@
+
+    Directory: C:\Users\FALCÃO\Documents\Obsidian Vault
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          24/08/2026    23:32           1055 Master_Voicebox_Ruflo_Conhecimento.md
+
+    Directory: A:\
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          26/08/2026    14:21                voicebox
+
+    Directory: A:\Downloads\arruda-vault
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          24/08/2026    23:41                01_Arquitetura_Voicebox
+
+    Directory: A:\Downloads\arruda-vault\01_Arquitetura_Voicebox
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          24/08/2026    23:44            207 Arquitetura_Voicebox.md
+-a---          24/08/2026    23:35            101 Indice_Voicebox.md
+
+    Directory: A:\Hermes\skills
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          21/08/2026    07:54                voicebox-installation
+
+    Directory: A:\OpenClawinstalação\.openclaw\.openclaw\workspace
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          27/08/2026    06:16            183 voicebox_audit.log
+-a---          27/08/2026    06:16            174 voicebox_endpoint_test_result.txt
+-a---          27/08/2026    04:39             71 voicebox_health.log
+-a---          27/08/2026    06:21              0 voicebox_scan.log
+
+    Directory: A:\OpenClawinstalação\.openclaw\.openclaw\workspace\memory
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          26/08/2026    21:38            110 VOICEBOX_ERRORS.log
+-a---          26/08/2026    23:38             85 voicebox_health.log
+-a---          27/08/2026    02:39            103 voicebox_monitor.log
+-a---          27/08/2026    01:26            283 voicebox-audit-state.json
+-a---          27/08/2026    01:26            249 voicebox-errors.log
+-a---          26/08/2026    22:38            143 voicebox-health.log
+
+    Directory: A:\voicebox\app\src\assets
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          20/08/2026    13:47        4245540 voicebox-logo.png
+
+    Directory: A:\voicebox\backend
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          24/08/2026    18:44           2224 relatorio_voicebox_48h.txt
+-a---          20/08/2026    13:47           5702 voicebox-server.spec
+
+    Directory: A:\voicebox\backend\data
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          24/08/2026    18:51         139264 voicebox.db
+

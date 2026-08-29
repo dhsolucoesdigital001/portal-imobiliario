@@ -1,0 +1,6 @@
+Get-ChildItem: 
+Line |
+   5 |  dir "C:\ProgramData\Voicebox\logs" >> audit_log.txt 2>&1
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Cannot find path 'C:\ProgramData\Voicebox\logs' because it does not exist.
+Auditoria concluída em 08/28/2026 09:12:07

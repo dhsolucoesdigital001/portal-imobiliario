@@ -1,0 +1,2 @@
+Voicebox status check successful at 2026-08-27 06:39. Voicebox is healthy (status: healthy).
+Warning: model_loaded is false.
