@@ -16,8 +16,17 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgresql://user:password@db:5432/property_db
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - certbot-web:/var/www/certbot
     ports:
       - "3000:3000"
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
 
 volumes:
   db-data:
+  certbot-web:
