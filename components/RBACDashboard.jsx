@@ -8,4 +8,3 @@ const RBACDashboard = ({ role }) => {
 };
 
 export default RBACDashboard;
-
