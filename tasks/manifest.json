@@ -1,11 +1,11 @@
 {
   "tasks": [
-    { "id": "FE-01", "role": "Frontend Architecture", "status": "pending" },
-    { "id": "DB-01", "role": "Database", "status": "pending" },
-    { "id": "INT-01", "role": "Integration", "status": "pending" },
-    { "id": "PAR-01", "role": "Parser", "status": "pending" },
-    { "id": "TEST-01", "role": "Testing", "status": "pending" },
-    { "id": "CICD-01", "role": "CI/CD", "status": "pending" },
-    { "id": "SEC-01", "role": "Security", "status": "pending" }
+    { "id": "FE-01", "role": "Frontend Architecture", "status": "in-progress" },
+    { "id": "DB-01", "role": "Database", "status": "in-progress" },
+    { "id": "INT-01", "role": "Integration", "status": "in-progress" },
+    { "id": "PAR-01", "role": "Parser", "status": "in-progress" },
+    { "id": "TEST-01", "role": "Testing", "status": "in-progress" },
+    { "id": "CICD-01", "role": "CI/CD", "status": "in-progress" },
+    { "id": "SEC-01", "role": "Security", "status": "in-progress" }
   ]
 }
