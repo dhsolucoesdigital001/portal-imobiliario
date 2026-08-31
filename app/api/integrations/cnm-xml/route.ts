@@ -1,22 +1,16 @@
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
+import { Queue } from 'bullmq'; // Assumindo uso de fila para assincronicidade
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const integrationQueue = new Queue('cnm-xml-queue', { connection: { host: 'localhost', port: 6379 } });
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json(); // Assumindo JSON processado do XML
-    const query = `
-      INSERT INTO properties (title, price, external_id, source)
-      VALUES ($1, $2, $3, $4)
-      ON CONFLICT (external_id) DO UPDATE SET price = $2
-    `;
-    await pool.query(query, [data.title, data.price, data.external_id, 'cnm-xml']);
-    
-    return NextResponse.json({ success: true });
+    const body = await request.json(); // Simplificação: em produção processaríamos streams
+    await integrationQueue.add('process-xml-batch', body);
+    return NextResponse.json({ success: true, message: 'Processamento enfileirado com sucesso.' });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to integrate CNM XML' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to queue CNM XML' }, { status: 500 });
   }
 }
