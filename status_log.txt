@@ -1,3 +1,4 @@
-2026-08-31 03:47: Servidor na porta 17493 estava inativo. Reiniciado com sucesso.08/31/2026 04:19:12: Port 17493 not listening. Killed orphaned Python processes and restarted Uvicorn backend.
-08/31/2026 04:19:19: Port 17493 was not listening. Restarted Uvicorn backend.
-08/31/2026 10:58:35: Port 17493 is not listening. The backend process appears missing on this host. Please verify the environment on the designated backend server.
+2026-08-31 11:58: PORT 17493 WAS DOWN. KILLED ANY ORPHANED PYTHON PROCESSES (NONE FOUND). RESTARTED UVICORN BACKEND.
+segunda-feira, 31 de agosto de 2026 13:09:18
+
+PORT 17493 IS DOWN. NO PYTHON PROCESSES FOUND TO KILL. COULD NOT IDENTIFY RESTART COMMAND FOR UVICORN BACKEND.

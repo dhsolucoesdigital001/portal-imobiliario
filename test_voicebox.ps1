@@ -13,9 +13,9 @@ $content = "--- Auditoria Voicebox $(Get-Date) ---`n"
 foreach ($url in $endpoints) {
     try {
         $response = Invoke-WebRequest -Uri $url -Method Get -UseBasicParsing -TimeoutSec 5
-        $content += "$url: OK (Code: $($response.StatusCode))`n"
+        $content += "$($url): OK (Code: $($response.StatusCode))`n"
     } catch {
-        $content += "$url: FAILED (Error: $($_.Exception.Message))`n"
+        $content += "$($url): FAILED (Error: $($_.Exception.Message))`n"
     }
 }
 

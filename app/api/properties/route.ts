@@ -1,8 +1,18 @@
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
+import { z } from 'zod';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+});
+
+const PropertySchema = z.object({
+  tenant_id: z.string().uuid(),
+  title: z.string().min(3),
+  description: z.string().optional(),
+  price: z.number().positive().optional(),
+  city: z.string(),
+  uf: z.string().length(2),
 });
 
 export async function GET(request: Request) {
@@ -22,19 +32,52 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const { tenant_id, title, description } = body;
+  const rawBody = await request.json();
+  const validation = PropertySchema.safeParse(rawBody);
 
-  if (!tenant_id || !title) {
-    return NextResponse.json({ error: 'tenant_id and title are required' }, { status: 400 });
+  if (!validation.success) {
+    return NextResponse.json({ error: validation.error.format() }, { status: 400 });
   }
+
+  const { tenant_id, title, description, price, city, uf } = validation.data;
 
   try {
     const result = await pool.query(
-      'INSERT INTO properties (tenant_id, title, description) VALUES ($1, $2, $3) RETURNING *',
-      [tenant_id, title, description]
+      'INSERT INTO properties (tenant_id, title, description, price, city, uf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [tenant_id, title, description, price, city, uf]
     );
     return NextResponse.json(result.rows[0], { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: Request) {
+  const rawBody = await request.json();
+  const { id, ...data } = rawBody;
+
+  if (!id) return NextResponse.json({ error: 'Property id required' }, { status: 400 });
+
+  try {
+    const result = await pool.query(
+      'UPDATE properties SET title = $1, description = $2, price = $3, city = $4, uf = $5 WHERE id = $6 RETURNING *',
+      [data.title, data.description, data.price, data.city, data.uf, id]
+    );
+    return NextResponse.json(result.rows[0]);
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+
+  if (!id) return NextResponse.json({ error: 'Property id required' }, { status: 400 });
+
+  try {
+    await pool.query('DELETE FROM properties WHERE id = $1', [id]);
+    return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
