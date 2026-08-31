@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    { "id": "FE-01", "role": "Frontend Architecture", "status": "pending" },
+    { "id": "DB-01", "role": "Database", "status": "pending" },
+    { "id": "INT-01", "role": "Integration", "status": "pending" },
+    { "id": "PAR-01", "role": "Parser", "status": "pending" },
+    { "id": "TEST-01", "role": "Testing", "status": "pending" },
+    { "id": "CICD-01", "role": "CI/CD", "status": "pending" },
+    { "id": "SEC-01", "role": "Security", "status": "pending" }
+  ]
+}
