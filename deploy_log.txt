@@ -85,3 +85,4 @@ HEAD is now at 79654e1 chore: implement modular architecture, async queue for XM
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
 
 Deploy finalizado! Aguarde 30 segundos para o Next.js iniciar e atualize o navegador.
+Deploy concluído com sucesso na VPS
