@@ -9,8 +9,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -19.9829, // Betim - MG approx center
-  lng: -44.1983
+  lat: -15.7801, // Brazil approx center
+  lng: -47.9292
 };
 
 const options = {
@@ -29,8 +29,8 @@ export default function SearchPage() {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    // Simulação de busca
-    fetch('/api/properties?tenant_id=betim-esmeraldas')
+    // Busca nacional
+    fetch('/api/properties')
       .then(res => res.json())
       .then(data => setProperties(data.data));
   }, []);
