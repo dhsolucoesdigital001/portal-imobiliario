@@ -1,7 +1,9 @@
+import React from 'react';
+
 export interface Plugin {
   id: string;
   name: string;
-  render: () => JSX.Element;
+  render: () => React.JSX.Element;
 }
 
 export const pluginRegistry: Plugin[] = [];
