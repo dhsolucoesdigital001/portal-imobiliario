@@ -18,13 +18,28 @@ const PropertySchema = z.object({
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const tenantId = searchParams.get('tenant_id');
+  const city = searchParams.get('city');
+  const uf = searchParams.get('uf');
 
   if (!tenantId) {
     return NextResponse.json({ error: 'tenant_id is required' }, { status: 400 });
   }
 
   try {
-    const result = await pool.query('SELECT * FROM properties WHERE tenant_id = $1', [tenantId]);
+    let query = 'SELECT * FROM properties WHERE tenant_id = $1';
+    const params: any[] = [tenantId];
+    let counter = 2;
+
+    if (city) {
+      query += ` AND city = $${counter++}`;
+      params.push(city);
+    }
+    if (uf) {
+      query += ` AND state = $${counter++}`;
+      params.push(uf);
+    }
+
+    const result = await pool.query(query, params);
     return NextResponse.json(result.rows);
   } catch (error) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
