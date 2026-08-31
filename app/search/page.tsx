@@ -50,7 +50,7 @@ export default function SearchPage() {
               position={{ lat: prop.lat, lng: prop.lng }}
               clusterer={clusterer}
             />
-          ))
+          )) as any // Workaround for TS2769
         }
       </MarkerClusterer>
     </GoogleMap>
