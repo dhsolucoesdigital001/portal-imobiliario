@@ -1,2 +1,4 @@
 2026-08-31 15:11: Port 17493 is not listening. No orphaned Python processes found. Backend restart required.
 2026-08-31 15:11: Backend on 17493 down; no processes to kill; backend startup script unknown.
+: Backend restarted on port 17493 after detected failure.
+2026-08-31 18:39:00: Backend restarted on port 17493 after detected failure.
