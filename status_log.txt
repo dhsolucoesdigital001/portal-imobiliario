@@ -1,4 +1,2 @@
-2026-08-31 11:58: PORT 17493 WAS DOWN. KILLED ANY ORPHANED PYTHON PROCESSES (NONE FOUND). RESTARTED UVICORN BACKEND.
-segunda-feira, 31 de agosto de 2026 13:09:18
-
-PORT 17493 IS DOWN. NO PYTHON PROCESSES FOUND TO KILL. COULD NOT IDENTIFY RESTART COMMAND FOR UVICORN BACKEND.
+2026-08-31 15:11: Port 17493 is not listening. No orphaned Python processes found. Backend restart required.
+2026-08-31 15:11: Backend on 17493 down; no processes to kill; backend startup script unknown.
