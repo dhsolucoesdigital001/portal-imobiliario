@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
+import pool from '@/lib/db';
 
 export async function POST(req: Request) {
   try {
     const rawBody = await req.json();
     
     // Validação estrutural do payload da Meta Graph API (Leads ads)
-    // Exemplo de estrutura esperada de webhook da Meta
     const leadData = {
       lead_id: rawBody.entry?.[0]?.changes?.[0]?.value?.lead_id || rawBody.lead_id,
       form_id: rawBody.entry?.[0]?.changes?.[0]?.value?.form_id || rawBody.form_id,
@@ -15,6 +15,12 @@ export async function POST(req: Request) {
     };
 
     console.log('Recebendo lead da Meta:', leadData);
+
+    // Inserir no PostgreSQL
+    await pool.query(
+      'INSERT INTO leads (tenant_id, data) VALUES ($1, $2)',
+      [rawBody.tenant_id || 'default', JSON.stringify(leadData)]
+    );
 
     // Disparo para CRM/N8N
     const n8nWebhookUrl = process.env.N8N_LEAD_WEBHOOK_URL;
@@ -32,6 +38,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, lead_id: leadData.lead_id });
   } catch (error) {
     console.error('Erro na captura:', error);
-    return NextResponse.json({ success: false, error: 'Falha interna de CRM' }, { status: 500 });
+    return NextResponse.json({ success: false, error: 'Falha interna de captura' }, { status: 500 });
   }
 }

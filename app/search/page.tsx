@@ -27,32 +27,46 @@ export default function SearchPage() {
   });
 
   const [properties, setProperties] = useState([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    // Busca nacional
-    fetch('/api/properties')
+    // Busca nacional - Injetar tenant_id dinamicamente em produção
+    fetch('/api/properties?tenant_id=default-tenant') 
       .then(res => res.json())
-      .then(data => setProperties(data.data));
+      .then(data => setProperties(data.data || []));
   }, []);
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={12}
-      options={options}
-    >
-      <MarkerClusterer>
-        {(clusterer) =>
-          properties.map((prop: any) => (
-            <Marker
-              key={prop.id}
-              position={{ lat: prop.lat, lng: prop.lng }}
-              clusterer={clusterer}
+    <div className='flex flex-col gap-4'>
+        <div className='p-4'>
+            <h1 className="text-2xl font-bold mb-4">Busca Geoespacial de Imóveis</h1>
+            <input
+                type="text"
+                placeholder="Digite cidade ou estado..."
+                className="border p-2 rounded mb-4 w-full"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
             />
-          )) as any // Workaround for TS2769
-        }
-      </MarkerClusterer>
-    </GoogleMap>
+            <button className="bg-blue-600 text-white p-2 rounded">Filtrar</button>
+        </div>
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={4}
+            options={options}
+        >
+            <MarkerClusterer>
+                {(clusterer) =>
+                properties.map((prop: any) => (
+                    <Marker
+                    key={prop.id}
+                    position={{ lat: prop.lat, lng: prop.lng }}
+                    clusterer={clusterer}
+                    />
+                ))
+                }
+            </MarkerClusterer>
+        </GoogleMap>
+    </div>
   ) : <></>;
 }

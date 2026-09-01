@@ -14,13 +14,18 @@ CREATE TABLE IF NOT EXISTS users (
     role TEXT NOT NULL DEFAULT 'user'
 );
 
--- Ativar RLS
-ALTER TABLE properties ENABLE ROW LEVEL SECURITY;
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+CREATE TABLE IF NOT EXISTS leads (
+    id SERIAL PRIMARY KEY,
+    tenant_id VARCHAR(50) NOT NULL,
+    data JSONB NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- Políticas RLS
-CREATE POLICY tenant_isolation_properties ON properties
-    USING (tenant_id = current_setting('app.current_tenant'));
+-- Adição de campos para busca avançada
+ALTER TABLE properties ADD COLUMN IF NOT EXISTS city TEXT;
+ALTER TABLE properties ADD COLUMN IF NOT EXISTS state VARCHAR(2);
+ALTER TABLE properties ADD COLUMN IF NOT EXISTS type TEXT;
+ALTER TABLE properties ADD COLUMN IF NOT EXISTS bedrooms INT;
 
-CREATE POLICY tenant_isolation_users ON users
-    USING (tenant_id = current_setting('app.current_tenant'));
+-- Indice para performance
+CREATE INDEX IF NOT EXISTS idx_properties_city_state ON properties (city, state);

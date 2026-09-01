@@ -11,7 +11,8 @@ const questions = [
   { key: 'FRONTEND_DOMAIN', prompt: 'Domínio do Frontend (ex: https://site.com): ' },
   { key: 'BACKEND_API_DOMAIN', prompt: 'Domínio da API Backend (ex: https://api.site.com): ' },
   { key: 'ADMIN_EMAIL', prompt: 'E-mail administrativo: ' },
-  { key: 'SMTP_PASSWORD', prompt: 'Senha de app do e-mail (SMTP): ' }
+  { key: 'SMTP_PASSWORD', prompt: 'Senha de app do e-mail (SMTP): ' },
+  { key: 'DATABASE_URL', prompt: 'URL do PostgreSQL (ex: postgresql://user:pass@localhost:5432/db): ' }
 ];
 
 const answers = {};
