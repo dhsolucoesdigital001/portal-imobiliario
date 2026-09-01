@@ -57,13 +57,15 @@ export default function SearchPage() {
         >
             <MarkerClusterer>
                 {(clusterer) =>
-                properties.map((prop: any) => (
-                    <Marker
-                    key={prop.id}
-                    position={{ lat: prop.lat, lng: prop.lng }}
-                    clusterer={clusterer}
-                    />
-                ))
+                  <div>
+                    {properties.map((prop: any) => (
+                        <Marker
+                        key={prop.id}
+                        position={{ lat: prop.lat, lng: prop.lng }}
+                        clusterer={clusterer}
+                        />
+                    ))}
+                  </div>
                 }
             </MarkerClusterer>
         </GoogleMap>
