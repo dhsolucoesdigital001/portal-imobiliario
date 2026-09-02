@@ -1,0 +1,1 @@
+Synchronization complete: portal-imobiliario pushed; next-property-app clean; both built.

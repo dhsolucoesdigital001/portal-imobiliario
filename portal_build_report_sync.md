@@ -1,1 +1,4 @@
-Builds successful on 09/01/2026 21:22:27
+## Sync Report - September 1st, 2026
+- Status: Build successful for both `portal-imobiliario` and `next-property-app`.
+- Git: Both repositories are up-to-date with `origin/main` after a pull sequence.
+- Build logs: Verified both repositories build without errors.
