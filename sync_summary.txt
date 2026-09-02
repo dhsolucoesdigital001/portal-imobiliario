@@ -1,1 +1,1 @@
-Audit completed. Synchronized next-property-app and portal-imobiliario. Both builds succeeded. No pending git changes found.
+Audit and sync completed successfully for portal-imobiliario and next-property-app. Both repos are clean and builds passed.
