@@ -1,0 +1,1 @@
+Sync complete: portal-imobiliario and next-property-app audited and built successfully. Both are clean.

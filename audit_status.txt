@@ -1,0 +1,1 @@
+Build check completed successfully for both portal-imobiliario and next-property-app at 2026-09-02 10:13 AM (America/Sao_Paulo).
