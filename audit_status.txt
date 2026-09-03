@@ -1,6 +1,4 @@
-Build check completed successfully for both portal-imobiliario and next-property-app at 2026-09-02 10:13 AM (America/Sao_Paulo).
-Sync
-completed
-at
-2026-09-02
-12:38
+Audit of portal-imobiliario and next-property-app completed successfully.
+- portal-imobiliario: build OK, git clean.
+- next-property-app: build OK, git clean.
+Sync synchronized as of 2026-09-03 03:16.
