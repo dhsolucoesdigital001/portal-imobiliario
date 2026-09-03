@@ -1,4 +1,1 @@
-Audit finished successfully for portal-imobiliario (next-property-app).
-Build completed with status code 0.
-Git status is clean.
-Synchronization task concluded.
+Synchronization successful: portal-imobiliario (next-property-app) is built and clean.
