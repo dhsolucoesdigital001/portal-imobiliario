@@ -1,1 +1,1 @@
-Audit report success: Build for portal-imobiliario completed successfully. No changes to commit. Status: Synced.
+Sync complete. Build passed for both repositories: portal-imobiliario and next-property-app. Working trees are clean.
