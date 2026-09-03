@@ -1,21 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Pool } from 'pg';
+import pool from '@/lib/db'; 
 import { z } from 'zod';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-const PropertySchema = z.object({
-  tenant_id: z.string().uuid(),
-  title: z.string().min(3),
-  description: z.string().optional(),
-  price: z.number().positive().optional(),
-  city: z.string(),
-  uf: z.string().length(2),
-});
-
-// Cache mantido para performance local
+// Cache mantido para performance local - Em produção, considere usar Redis
 const propertyCache = new Map<string, { data: any, timestamp: number }>();
 const CACHE_TTL = 60000; // 1 minuto
 
