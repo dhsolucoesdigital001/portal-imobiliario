@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db'; 
-import { z } from 'zod';
-// Cache mantido para performance local - Em produção, considere usar Redis
-const propertyCache = new Map<string, { data: any, timestamp: number }>();
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 const CACHE_TTL = 60000; // 1 minuto
+const propertyCache = new Map<string, { data: any, timestamp: number }>();
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -25,41 +26,33 @@ export async function GET(request: Request) {
   }
 
   try {
-    let query = 'SELECT * FROM properties WHERE tenant_id = $1';
-    const params: any[] = [tenantId];
-    let offsetIdx = 2;
+    const where: any = { tenantId };
+    if (city) where.city = city;
+    if (uf) where.state = uf;
 
-    if (city) {
-        query += ` AND city = $${offsetIdx++}`;
-        params.push(city);
-    }
-    if (uf) {
-        query += ` AND uf = $${offsetIdx++}`;
-        params.push(uf);
-    }
-
-    const countQuery = query.replace('SELECT *', 'SELECT COUNT(*)');
-    query += ` LIMIT $${offsetIdx++} OFFSET $${offsetIdx++}`;
-    params.push(limit, (page - 1) * limit);
-
-    const [countResult, dataResult] = await Promise.all([
-        pool.query(countQuery, params.slice(0, params.length - 2)),
-        pool.query(query, params)
+    const [total, properties] = await prisma.$transaction([
+      prisma.property.count({ where }),
+      prisma.property.findMany({
+        where,
+        take: limit,
+        skip: (page - 1) * limit,
+        orderBy: { createdAt: 'desc' }
+      })
     ]);
 
     const result = {
-        data: dataResult.rows,
-        meta: {
-            total: parseInt(countResult.rows[0].count),
-            page,
-            limit
-        }
+      data: properties,
+      meta: {
+        total,
+        page,
+        limit
+      }
     };
 
     propertyCache.set(cacheKey, { data: result, timestamp: Date.now() });
     return NextResponse.json(result);
   } catch (error) {
-    console.error('Erro ao buscar propriedades:', error);
-    return NextResponse.json({ error: 'Erro interno' }, { status: 500 });
+    console.error('API Error:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
