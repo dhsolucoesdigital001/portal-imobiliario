@@ -1,13 +1,20 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
     const properties = await prisma.property.findMany({
       take: 50,
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        city: true,
+        state: true,
+        type: true,
+        bedrooms: true,
+      }
     });
     return NextResponse.json({ success: true, data: properties });
   } catch (error) {
