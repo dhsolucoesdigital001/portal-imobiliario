@@ -1,3 +1,12 @@
-Audit performed on Friday, September 4th, 2026.
-Both portal-imobiliario and next-property-app codebases are clean (git status) and build successfully (npm run build).
-Audit and sync completed: Repository clean and current.
+# Synchronization Audit Report - 2026-09-04 10:45
+
+## Repositories
+- **portal-imobiliario**: Clean, synced with origin/main.
+- **next-property-app**: Clean, synced with origin/main.
+
+## Build Status
+- **portal-imobiliario**: Build successful (`npm run build -- --debug` resolved memory issues).
+- **next-property-app**: Build successful.
+
+## Notes
+- Initial build crashes in `portal-imobiliario` were due to memory constraints, resolved by using `--debug` mode flags which likely changed how Turbopack managed resources/workers. Both repositories are stable and synchronized.
