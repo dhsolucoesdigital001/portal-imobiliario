@@ -1,5 +1,5 @@
 
-import { POST as postLeads } from '../portal-imobiliario/app/api/leads/route.ts';
+import { POST as postLeads } from '../app/api/leads/route';
 
 async function testLeadsRoute() {
   console.log('Testing /api/leads...');
