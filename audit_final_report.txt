@@ -1,1 +1,1 @@
-Synchronization complete. Build successful. Git clean.
+Audit code, run npm run build, and synchronize: Build successful, lint issues persist, repo clean/up-to-date.
