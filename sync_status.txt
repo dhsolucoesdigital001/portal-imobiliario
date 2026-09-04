@@ -1,1 +1,2 @@
-Build successful and portal-imobiliario synced.
+Sync
+successful
