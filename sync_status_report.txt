@@ -1,0 +1,1 @@
+Audit successful. Both portal-imobiliario and next-property-app builds finished successfully, and both repositories are clean.

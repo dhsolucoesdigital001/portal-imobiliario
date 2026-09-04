@@ -1,0 +1,13 @@
+Relatório de Auditaria de Rotas - Portal Imobiliário
+=================================================
+1. Rota /api/properties (GET)
+   - Status: Implementada
+   - Validação: tenant_id obrigatório validado com status 400.
+   - Cobertura de Erros: Cache implementado, tratamento try-catch presente.
+2. Rota /api/integrations/olx (POST)
+   - Status: Implementada
+   - Validação: Verifica presença de 'id' e 'title'.
+   - Cobertura de Erros: Tratamento try-catch global com logging no console.
+3. Rota /api/users
+   - Status: Implementada
+   - Validação: tenant_id obrigatório para GET, campos obrigatórios para POST.

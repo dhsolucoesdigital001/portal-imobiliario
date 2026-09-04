@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id         Int      @id @default(autoincrement())
+  tenantId   String   @map("tenant_id") @db.VarChar(50)
+  title      String   @db.Text
+  price      Decimal
+  createdAt  DateTime @default(now()) @map("created_at")
+  city       String?  @db.Text
+  state      String?  @db.VarChar(2)
+  type       String?  @db.Text
+  bedrooms   Int?
+  @@map("properties")
+  @@index([city, state])
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  tenantId String @map("tenant_id") @db.VarChar(50)
+  email    String @unique @db.Text
+  role     String @default("user") @db.Text
+  @@map("users")
+}
+
+model Lead {
+  id        Int      @id @default(autoincrement())
+  tenantId  String   @map("tenant_id") @db.VarChar(50)
+  data      Json
+  createdAt DateTime @default(now()) @map("created_at")
+  @@map("leads")
+}
