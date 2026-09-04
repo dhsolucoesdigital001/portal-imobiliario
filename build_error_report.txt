@@ -1,0 +1,6 @@
+O build do Portal Imobiliário falhou ao verificar a tipagem.
+
+Erro encontrado:
+tests/runner.ts(2,35): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+
+Por favor, revise o arquivo `tests/runner.ts` para corrigir o caminho de importação.
