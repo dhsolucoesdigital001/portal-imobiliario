@@ -14,7 +14,8 @@ export async function GET() {
         state: true,
         type: true,
         bedrooms: true,
-      }
+      },
+      // cacheStrategy: { ttl: 60, swr: 300 } // Comentado pois o Prisma padrão não suporta nativamente sem extensões
     });
     return NextResponse.json({ success: true, data: properties });
   } catch (error) {
