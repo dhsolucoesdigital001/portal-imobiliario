@@ -1,13 +1,1 @@
-Synchronized
-portal-imobiliario
-and
-next-property-app
-at
-
-quarta-feira, 2 de setembro de 2026 19:09:45
-.
-Both
-builds
-passed
-successfully.
-
+Sync complete. Both repositories (next-property-app, portal-imobiliario) audited and built successfully. Working trees clean.
