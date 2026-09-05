@@ -29,3 +29,5 @@ ALTER TABLE properties ADD COLUMN IF NOT EXISTS bedrooms INT;
 
 -- Indice para performance
 CREATE INDEX IF NOT EXISTS idx_properties_city_state ON properties (city, state);
+CREATE INDEX IF NOT EXISTS idx_properties_price ON properties (price);
+CREATE INDEX IF NOT EXISTS idx_properties_type ON properties (type);

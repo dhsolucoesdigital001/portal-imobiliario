@@ -13,6 +13,8 @@ CREATE INDEX IF NOT EXISTS idx_properties_location ON properties USING GIST (loc
 ALTER TABLE properties ADD COLUMN IF NOT EXISTS address_raw TEXT;
 ALTER TABLE properties ADD COLUMN IF NOT EXISTS city TEXT;
 ALTER TABLE properties ADD COLUMN IF NOT EXISTS state TEXT;
+CREATE INDEX IF NOT EXISTS idx_properties_city ON properties (city);
+CREATE INDEX IF NOT EXISTS idx_properties_state ON properties (state);
 
 -- Garantir que as políticas RLS continuem válidas (nenhuma mudança necessária na política, mas bom checar)
 -- As políticas RLS existentes continuam sendo aplicadas.
