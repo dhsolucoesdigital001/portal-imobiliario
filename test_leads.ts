@@ -1,4 +1,4 @@
-import { POST } from './portal-imobiliario/app/api/leads/route';
+import { POST } from './app/api/leads/route';
 
 async function testLeadsRoute() {
   console.log('Testing /api/leads...');
