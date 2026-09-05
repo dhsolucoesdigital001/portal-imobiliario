@@ -15,9 +15,15 @@ export async function GET() {
         type: true,
         bedrooms: true,
       },
-      // cacheStrategy: { ttl: 60, swr: 300 } // Comentado pois o Prisma padrão não suporta nativamente sem extensões
     });
-    return NextResponse.json({ success: true, data: properties });
+
+    return new NextResponse(JSON.stringify({ success: true, data: properties }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+      },
+    });
   } catch (error) {
     console.error('Erro ao buscar propriedades:', error);
     return NextResponse.json({ success: false, error: 'Erro ao buscar propriedades' }, { status: 500 });
