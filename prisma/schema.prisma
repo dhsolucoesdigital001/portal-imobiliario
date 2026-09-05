@@ -7,6 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Melhoria: Adicionado índice composto para garantir que as buscas por inquilino + cidade + estado sejam performáticas.
+// Recomenda-se rodar: npx prisma db push ou npx prisma migrate dev após essa alteração no schema.prisma.
+
 model Property {
   id         Int      @id @default(autoincrement())
   tenantId   String   @map("tenant_id") @db.VarChar(50)
@@ -18,7 +21,7 @@ model Property {
   type       String?  @db.Text
   bedrooms   Int?
   @@map("properties")
-  @@index([city, state])
+  @@index([tenantId, city, state]) // [Otimização] Índice para filtragem eficiente
 }
 
 model User {
