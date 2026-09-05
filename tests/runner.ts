@@ -1,9 +1,8 @@
-
 import { POST as postLeads } from '../app/api/leads/route';
 
 async function testLeadsRoute() {
   console.log('Testing /api/leads...');
-  // Mock request
+  // Mock Request object
   const mockReq = {
     json: async () => ({
       name: 'Teste QA',
@@ -13,11 +12,17 @@ async function testLeadsRoute() {
   };
 
   try {
-    const response = await postLeads(mockReq as any);
+    // Definir variável de ambiente mockada para contornar erros de conexão
+    process.env.DATABASE_URL = 'postgresql://user:pass@localhost:5432/db';
+    
+    // O router original espera um 'Request' real. Como estamos em node env, mockamos
+    const response = await postLeads(mockReq as unknown as Request);
+    const body = await response.json();
+    
     if (response.status === 200) {
-      console.log('PASS: /api/leads');
+      console.log('PASS: /api/leads - Response:', body);
     } else {
-      console.error('FAIL: /api/leads returned ' + response.status);
+      console.error('FAIL: /api/leads returned ' + response.status + ' - Body:', body);
     }
   } catch (e) {
     console.error('ERROR: /api/leads failed - ' + e);
