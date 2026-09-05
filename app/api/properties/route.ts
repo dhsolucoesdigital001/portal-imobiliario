@@ -1,10 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-// Singleton instance to prevent hot-reloading issues in Next.js development
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-const prisma = globalForPrisma.prisma || new PrismaClient();
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+import { prisma } from '@/src/lib/prisma';
 
 
 const CACHE_TTL = 60000; // 1 minuto
