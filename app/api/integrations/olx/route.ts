@@ -1,19 +1,11 @@
 import { NextResponse } from 'next/server';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+import pool from '@/lib/db';
 
 export async function POST(request: Request) {
   try {
     const rawData = await request.text();
-    // Assuming OLX sends form or JSON.
-    // If it's XML, use a parser like 'xml2js'.
-    // If it's JSON as common in webhooks:
     const data = JSON.parse(rawData);
 
-    // Validate payload (example)
     if (!data.id || !data.title) {
         return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
     }
