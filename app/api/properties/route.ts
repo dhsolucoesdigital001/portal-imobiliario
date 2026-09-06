@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/src/lib/prisma';
 
 
-const CACHE_TTL = 60000; // 1 minuto
+const CACHE_TTL = 300000; // Aumentado para 5 minutos para reduzir carga no banco
 const propertyCache = new Map<string, { data: any, timestamp: number }>();
 
 export async function GET(request: Request) {
@@ -29,10 +29,8 @@ export async function GET(request: Request) {
     if (city) where.city = city;
     if (uf) where.state = uf;
 
-    // Use cached total count if possible, or just optimize the queries
-    const [total, properties] = await prisma.$transaction([
-      prisma.property.count({ where }),
-      prisma.property.findMany({
+    // Otimização: count pode ser lento. Considerar cache separado para o total se necessário
+    const properties = await prisma.property.findMany({
         where,
         take: limit,
         skip: (page - 1) * limit,
@@ -44,8 +42,9 @@ export async function GET(request: Request) {
             city: true,
             state: true
         }
-      })
-    ]);
+      });
+
+    const total = await prisma.property.count({ where });
 
     const result = {
       data: properties,
