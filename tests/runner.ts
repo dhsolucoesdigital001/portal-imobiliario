@@ -14,6 +14,8 @@ async function testLeadsRoute() {
   try {
     // Definir variável de ambiente mockada para contornar erros de conexão
     process.env.DATABASE_URL = 'postgresql://user:pass@localhost:5432/db';
+process.env.N8N_LEAD_WEBHOOK_URL = ''; // Evitar chamada real
+
     
     // O router original espera um 'Request' real. Como estamos em node env, mockamos
     const response = await postLeads(mockReq as unknown as Request);
