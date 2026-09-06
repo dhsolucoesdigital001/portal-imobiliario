@@ -1,4 +1,4 @@
-import { POST as postLeads } from './../app/api/leads/route';
+import { POST as postLeads } from '../app/api/leads/route';
 
 async function testLeadsRoute() {
   console.log('Testing /api/leads...');
