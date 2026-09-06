@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const tenantId = searchParams.get('tenant_id');
   const page = parseInt(searchParams.get('page') || '1');
-  const limit = Math.min(parseInt(searchParams.get('limit') || '10'), 50); // Added limit cap for performance
+  const limit = Math.min(parseInt(searchParams.get('limit') || '10'), 100);
   const city = searchParams.get('city');
   const uf = searchParams.get('uf');
 
@@ -52,10 +52,14 @@ export async function GET(request: Request) {
       meta: {
         total,
         page,
-        limit
+        limit,
+        totalPages: Math.ceil(total / limit)
       }
     };
 
+    if (propertyCache.size > 500) {
+      propertyCache.clear();
+    }
     propertyCache.set(cacheKey, { data: result, timestamp: Date.now() });
     return NextResponse.json(result);
   } catch (error) {
