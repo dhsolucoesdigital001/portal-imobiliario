@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const tenantId = searchParams.get('tenant_id');
   const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '10');
+  const limit = Math.min(parseInt(searchParams.get('limit') || '10'), 50); // Added limit cap for performance
   const city = searchParams.get('city');
   const uf = searchParams.get('uf');
 
@@ -29,13 +29,21 @@ export async function GET(request: Request) {
     if (city) where.city = city;
     if (uf) where.state = uf;
 
+    // Use cached total count if possible, or just optimize the queries
     const [total, properties] = await prisma.$transaction([
       prisma.property.count({ where }),
       prisma.property.findMany({
         where,
         take: limit,
         skip: (page - 1) * limit,
-        orderBy: { createdAt: 'desc' }
+        orderBy: { createdAt: 'desc' },
+        select: { // Selective fetch to reduce payload size
+            id: true,
+            title: true,
+            price: true,
+            city: true,
+            state: true
+        }
       })
     ]);
 
