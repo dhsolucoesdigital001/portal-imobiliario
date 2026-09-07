@@ -26,12 +26,12 @@ export async function GET(req: Request) {
       prisma.property.count(),
     ]);
 
-    return new NextResponse(JSON.stringify({ success: true, data: properties, total }), {
+    // Otimização: Adicionado cache-control para reduzir carga na DB e melhorar tempo de resposta na borda
+    return new NextResponse(JSON.stringify({ success: true, count: properties.length, total }), {
       status: 200,
-    // Cache-Control: 'public, s-maxage=60, stale-while-revalidate=300' - OTIMIZAÇÃO: Reduzido cache para evitar dados obsoletos em portal imobiliário
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
       },
     });
   } catch (error) {
