@@ -1,4 +1,4 @@
-import { POST as postLeads } from '../src/app/api/leads/route';
+import { POST as postLeads } from '../src/app/api/leads/route.ts';
 
 async function testLeadsRoute() {
   console.log('Testing /api/leads...');
