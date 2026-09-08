@@ -17,6 +17,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'tenant_id is required' }, { status: 400 });
   }
 
+  // Use Redis or another SSR/ISR caching strategy if possible instead of local memory
+  // for better scalability in production.
   const cacheKey = `${tenantId}_page_${page}_limit_${limit}_${city}_${uf}`;
   const cachedData = propertyCache.get(cacheKey);
 
