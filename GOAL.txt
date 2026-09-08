@@ -1,0 +1,1 @@
+Audit code, run npm run build, and synchronize the portal-imobiliario (next-property-app) codebase. Perform git status and push pending changes if valid.
