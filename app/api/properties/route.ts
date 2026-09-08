@@ -29,22 +29,22 @@ export async function GET(request: Request) {
     if (city) where.city = city;
     if (uf) where.state = uf;
 
-    // Otimização: count pode ser lento. Considerar cache separado para o total se necessário
-    const properties = await prisma.property.findMany({
+    const [properties, total] = await Promise.all([
+      prisma.property.findMany({
         where,
         take: limit,
         skip: (page - 1) * limit,
         orderBy: { createdAt: 'desc' },
-        select: { // Selective fetch to reduce payload size
-            id: true,
-            title: true,
-            price: true,
-            city: true,
-            state: true
+        select: {
+          id: true,
+          title: true,
+          price: true,
+          city: true,
+          state: true
         }
-      });
-
-    const total = await prisma.property.count({ where });
+      }),
+      prisma.property.count({ where })
+    ]);
 
     const result = {
       data: properties,
