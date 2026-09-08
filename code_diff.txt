@@ -1,0 +1,6 @@
+
+InputObject        SideIndicator
+-----------        -------------
+next-property-app  =>
+portal-imobiliario <=
+
